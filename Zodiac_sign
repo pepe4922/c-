@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+
+int main ()
+{
+	int birthdate,n;
+	string month;
+	
+	while (1)
+	{
+		
+		cout <<"Please Enter your date of birth: ";
+		cin >> birthdate;
+		
+		cout <<"Enter the month: ";
+		cin >> month;
+		
+		cout <<endl;
+		
+		month[0]=toupper(month[0]); // use of to upper function to captalize the first letter if user enter a small letter
+	
+	
+	if ((birthdate >=20 && birthdate <=31 && month=="January")|| (birthdate <=18 && month =="Feburary"))
+	{
+		cout <<"Aquarius"<<endl; 
+	}
+	else if ((birthdate >=19 && birthdate <=28 && month=="Feburary")|| (birthdate <=20 && month =="March"))
+	{
+		cout <<"Pisces"<<endl;
+	}
+	else if ((birthdate >=21 && birthdate <=31 && month=="March")|| (birthdate <=19 && month =="April"))
+	{
+		cout <<"Aries"<<endl;
+	}
+	else if ((birthdate >=20 && birthdate <=30 && month=="April")|| (birthdate <=20 && month =="May"))
+	{
+		cout <<"Taurus"<<endl;
+	}
+	else if ((birthdate >=21 && birthdate <=31 && month=="May")|| (birthdate <=20 && month =="June"))
+	{
+		cout <<"Gemini"<<endl;
+	}
+	else if ((birthdate >=21 && birthdate <=30 && month=="June")|| (birthdate <=22 && month =="July"))
+	{
+		cout <<"Cancer"<<endl;
+	}
+	else if ((birthdate >=23 && birthdate <=31 && month=="July")|| (birthdate <=22 && month =="August"))
+	{
+		cout <<"Leo"<<endl;
+	}
+	else if ((birthdate >=23 && birthdate <=31 && month=="August")|| (birthdate <=22 && month =="Septmeber"))
+	{
+		cout <<"virgo"<<endl;
+	}
+	else if ((birthdate >=23 && birthdate <=30 && month=="September")|| (birthdate <=22 && month =="October"))
+	{
+		cout <<"Libra"<<endl;
+	}
+	else if ((birthdate >=23 && birthdate <=31 && month=="october")|| (birthdate <=21 && month =="November"))
+	{
+		cout <<"Scorpio"<<endl;
+	}
+	else if ((birthdate >=22 && birthdate <=30 && month=="November")|| (birthdate <=21 && month =="December"))
+	{
+		cout <<"Sagittarius"<<endl;
+	}
+	else if ((birthdate >=22 && birthdate <=31 && month=="December")|| (birthdate <=19 && month =="January"))
+	{
+		cout <<"Capricon"<<endl;
+	}
+	
+	cout<<endl;
+	cout<<"Press 1 to exit or any number to contiue: ";
+	cin >> n;
+	if (n==1)
+	{
+		break;
+	}
+	system("cls");
+	}
+	
+	
+	return 0;
+}
