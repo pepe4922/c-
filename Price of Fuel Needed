@@ -1,0 +1,52 @@
+#include <iostream>
+
+
+using namespace std;
+
+void fuelCalc(float& fuelPrice,float& carAvg,float& distance)
+{
+	char ch;
+	int priceOfFuelNeeded;
+	
+	cout <<"Enter the fuel price: ";
+	cin >> fuelPrice;
+	
+	cout<<"Enter the average of your car in Km/l: ";
+	cin >> carAvg;
+	
+	cout <<"Enter the Distance in KM (one side): ";
+	cin>>distance;
+	
+	cout<<"Do you want to come back as well? [Y/N]: ";
+	cin >> ch;
+	
+	if (ch == 'Y'|| ch=='y')
+	{
+		distance = distance*2;
+	}
+	else if (ch== 'N'|| ch=='n')
+	{
+		distance=distance+0;
+	}
+	
+	priceOfFuelNeeded = (distance/carAvg)*fuelPrice;
+	
+	cout <<endl;
+	cout<<"Price Of Fuel Needed as per Your Distance is "<<priceOfFuelNeeded<<" Rs";
+}
+
+
+int main ()
+{
+	float fPrice, carAvg,distance;
+	cout <<"^^^^^^^^^^^^^^^^^^"<<endl;
+	cout <<"Fuel Calculator"<<endl;
+	cout <<"^^^^^^^^^^^^^^^^^^"<<endl;
+	
+
+	fuelCalc(fPrice,carAvg,distance);
+	
+	
+	
+	return 0;
+}
