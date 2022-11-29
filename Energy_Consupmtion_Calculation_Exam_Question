@@ -1,0 +1,113 @@
+#include <iostream>
+#include <string.h>
+#include <cstdlib>
+
+
+using namespace std;
+
+int main ()
+{
+	int rooms,ledBlubs,tubeLight,hrs,fan,printer,laptopCharger,airConditioner,minutes;
+	float mins,kwH_usage_ledBlub,kwH_usage_tubeLight,kwH_usage_fan,	kwH_usage_printer,kwH_usage_laptopCharger,kwH_usage_airConditioner,sum=0;
+	char roomName[10][100];  // 2d array to store names of rooms 
+	float totalConsupmtion[20];	// 1 d array to get the total cosumption of building
+	
+	cout <<"\t\t\t##################################"<<endl;
+	cout <<"\t\t\tWelcome To Green Energy Technology"<<endl;
+	cout <<"\t\t\t##################################"<<endl;
+	
+	cout <<"Energy Consumption Calculator"<<endl;
+	
+	
+	cout<<"Enter the No of Rooms: ";
+	cin >> rooms;
+	
+	
+
+	for (int i=0 ; i<rooms;i++)
+	{
+		cout <<"Enter the Name of Room No "<<i+1<<": ";
+		
+		cin>> roomName[i];
+	}
+	
+	system("cls");
+	
+	for (int i=0 ; i<rooms;i++)
+	{
+		cout <<roomName[i]<<endl;
+		
+		cout <<"Enter the No of LED Blubs: ";
+		cin >> ledBlubs;
+		
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_ledBlub= (ledBlubs*15*hrs*(mins/60))/1000;
+		
+		cout <<"Enter the No of tube Lights: ";
+		cin >> tubeLight;
+		
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_tubeLight= (tubeLight*30*hrs*(mins/60))/1000;
+		
+		cout <<"Enter the No of Fans: ";
+		cin >> fan;
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_fan= (tubeLight*70*hrs*(mins/60))/1000;
+		
+			
+		cout <<"Enter the No of Printers: ";
+		cin >> printer;
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_printer= (tubeLight*50*hrs*(mins/60))/1000;
+		
+			
+		cout <<"Enter the No of Laptop Chargers: ";
+		cin >> laptopCharger;
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_laptopCharger= (tubeLight*65*hrs*(mins/60))/1000;
+			
+		cout <<"Enter the No of Air Conditioner: ";
+		cin >> airConditioner;
+		cout<<"Enter the No of Hours and Minutes: "	;
+		cin >> hrs>>minutes;
+		mins=minutes;
+		
+		kwH_usage_airConditioner= (tubeLight*1500*hrs*(mins/60))/1000;
+		
+	
+		totalConsupmtion[i]=kwH_usage_ledBlub+kwH_usage_tubeLight+kwH_usage_fan+kwH_usage_printer+kwH_usage_laptopCharger+kwH_usage_airConditioner;
+		
+		
+		sum = sum +totalConsupmtion[i];
+		
+		system("cls");
+	}
+	
+	
+	
+	for (int i=0 ;i<rooms;i++)
+	{
+		cout <<"Consumption By "<< roomName[i]<<" is "<<totalConsupmtion[i]<<" Kwh"<<endl;
+	}
+	cout <<"Total Consumption By The Entire Building is: "<<sum<<" Kwh";
+	
+	
+	
+	
+	return 0;
+}
