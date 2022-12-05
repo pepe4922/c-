@@ -1,0 +1,94 @@
+#include <iostream>
+#include <unistd.h>   // added this library to get the sleep function
+#include <windows.h> // added this library to get the color functon
+
+using namespace std;
+
+class Customer{		// making a class of customer 
+	public:
+		int customer_id;
+		int card_balance;
+		int amountCharged;
+		int bill;
+		
+};
+
+
+
+int main ()
+{
+	int id; 
+	int stops,amountCharged,remainingBalance;
+	Customer c1[10];			// creating an object  array of class customer to store the customer ID and customer balance
+	
+	system("Color 0E"); // Adding color to the background and text (o is for black background and A is for green
+	
+	
+	cout<<"\t\t\t*********************"<<endl;
+	cout<<"\t\t\tWelcome To speedo Bus"<<endl;
+	cout<<"\t\t\t*********************"<<endl;
+	
+	
+	for (int i=1;i<=2;i++)		// adding values in c1 array (only 2 customers, you can add as many as you want)
+	{
+		cout <<"Please Enter Your Customer ID: ";
+		cin>>c1[i].customer_id;
+		
+		cout<<"Please Enter Your Balance: ";
+		cin >>c1[i].card_balance;
+	
+		
+	}
+	
+	sleep(1);
+	system("cls");
+	
+	cout <<"Please Enter Your ID: ";  //entering thr ID
+	cin >>id;
+	
+	for (int i=0;i<=2;i++)
+	{
+		if (id== c1[i].customer_id)
+		{
+				cout <<"Please Enter Your stops: ";
+				cin >> stops;
+				
+				if (stops ==1)   // if stops is equal to 1 then only 10 $ wll bw charged
+				{
+					c1[i].amountCharged=10;
+				}
+				else if (stops==2)  // if stops is equal to 2 then only 20 $ wll bw charged
+				{
+					c1[i].amountCharged = 20;
+				}
+				else if (stops >2)  // if stops is >2 then 2$ per station will be charged along with 20$ for the first 2 stations
+				{
+					c1[i].amountCharged = 2*10 + 2*(stops-2);
+				}
+				
+				if (c1[i].amountCharged <=c1[i].card_balance) // checking the amount charged with the balance in the card
+				{
+					cout<< "Your Total Bill is "<<c1[i].amountCharged<<endl;  // displaying the total balance
+					c1[i].bill = c1[i].card_balance-c1[i].amountCharged;
+					cout<< "Your Remaining Balance  is: "<<c1[i].bill;		// displaying the remaining balance
+				}
+				
+				else if (c1[i].amountCharged > c1[i].card_balance)  // checking the condtion if amount charged is > the current balance 
+				{
+					cout<<" Insufficient Balance,Please Recharge! "<<endl;
+					break;
+				}
+					
+		
+			}
+	
+	
+		}
+		
+	return 0;
+}
+
+	
+	
+	
+
