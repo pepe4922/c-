@@ -1,0 +1,491 @@
+#include <iostream>
+#include <string.h>
+#include <math.h>
+#include <cstdlib>
+#include <unistd.h>
+
+using namespace std;
+
+static int busn=0; // global variable 
+
+class BusM
+{
+private:
+		int busNumberPlate;
+		string arrivalTime;
+		string departureTime; 
+		int fare;
+		string destination;
+		string departure;
+		int seat[8][4];
+		string busClass;
+		int seatCount=0;
+public:
+
+void busadd()
+{
+	char ch;
+	cout <<"Enter The Bus Number: ";
+	cin>> busNumberPlate;
+	
+	while (true)
+	{
+	
+	cout <<"Enter The Class of the Bus: \nPress G for Gold Class\nPress E for Exceutive Class:";
+	cin >>ch;
+	if (ch=='G')
+	{
+		busClass="Gold";
+		break;
+	}
+	else if (ch =='E')
+	{
+		busClass="Exceutive";
+		break;
+	}
+	else
+	{
+		cout <<"Invalid Option,Please Try Again:"<<endl;
+	}
+	
+	}
+	
+	cout<<"Enter Destination Of the Bus: ";
+	cin>> destination;
+	
+	cout<<"Enter Departure Of the Bus: ";
+	cin>> departure;
+	
+	cout<<"Enter arrival time: ";
+	cin>> arrivalTime;
+	
+	cout<<"Enter departure time: ";
+	cin>>departureTime;
+	
+	cout<<"Enter fare: ";
+	cin>> fare;
+	
+	for (int i=0; i<8;i++)
+	{
+		for (int j=0; j<4 ;j++)
+		{
+			seat[i][j]=0;
+		}
+	}
+	system("cls");
+	cout<<"Bus Added Successfully";
+	sleep(1.5);
+	
+}	
+
+void busView()	
+{
+	cout<<"*******************************"<<endl;
+	cout<<"Bus Number: "<<busNumberPlate<<endl;
+	cout<<"Class: "<<busClass<<endl;
+	cout<<"Destination: "<<destination<<endl;
+	cout<<"Departure: "<<departure<<endl;
+	cout<<"Arrival Time: "<<arrivalTime<<endl;
+	cout<<"Departure Time: "<<departureTime<<endl;
+	cout<<"Fare: "<<fare<<endl;
+	cout<<"*******************************"<<endl;
+	
+	cout<< "0=Empty, 1=Reserved"<<endl;
+	for (int i=0; i<8;i++)
+	{
+		for (int j=0; j<4 ;j++)
+		{
+			cout<<seat[i][j];
+			if (j==1)
+			{
+				cout<<" ";
+			}
+			
+		}
+		cout<<endl;
+	}	
+	
+}
+
+void busView2()
+{
+	
+	cout<<"Destination: "<<destination<<endl;
+	cout<<"Departure: "<<departure<<endl;
+	cout<<"Fare: "<<fare<<endl;
+	cout<<"Class: "<<busClass<<endl;
+	
+	
+}
+
+void busSchedule()
+{
+	cout<<"Bus Number: "<<busNumberPlate<<endl;
+	cout<<"Arrival Time: "<<arrivalTime<<endl;
+	cout<<"Departure Time: "<<departureTime<<endl;
+	cout<<"No Of Seats Booked: "<<seatCount<<endl;
+}
+
+void bookTicket()
+{
+	int row,col,sBook,tFare;
+	string name;
+	cout<< "0= Empty, 1=Reserved"<<endl;
+	for (int i=0; i<8;i++)
+	{
+		for (int j=0; j<4 ;j++)
+		{
+			cout<<seat[i][j];
+			if (j==1)
+			{
+				cout<<" ";
+			}
+			
+		}
+		cout<<endl;
+	}	
+	if (seatCount >=0 && seatCount <32)
+	{
+
+	cout<<"Enter Customer Name: ";
+	cin>> name;
+	
+	cout << "How many Seats to Book?: ";
+	cin>> sBook;
+	
+	tFare= sBook*fare;
+	
+	while( sBook !=0)
+	{
+	
+		cout<<"Please Enter The Row Number & Column Number: "<<endl;
+		cout<<"Please Enter The Row Number(0 to 7): "<<endl;
+		cin>> row;
+		
+		cout<<"Please Enter The Column Number (0 to 3): "<<endl;
+		cin>> col;
+		
+		if ((row >=0 && row <=7) && (col>=0 && col<=3))
+		{
+			if (seat[row][col]==0)
+			{
+		
+				seat[row][col]=1;
+				sBook--;
+				seatCount++;
+			}
+			else
+			{
+				cout<<"Seat is already reserved: ";
+			}
+		}
+		else
+		{
+			
+			cout<<"Invalid"<<endl;
+		}
+	} 
+	cout <<"Total Fare: "<<tFare<<endl;
+	}
+	else if (seatCount ==32)
+	{
+		cout <<"This Bus is Filled: "<<endl;
+	}
+	
+	
+}
+
+void cancelTicket()
+{
+	int sBook,row,col,rFare;
+	cout<< "0= Empty, 1=Reserved"<<endl;
+	for (int i=0; i<8;i++)
+	{
+		for (int j=0; j<4 ;j++)
+		{
+			cout<<seat[i][j];
+			if (j==1)
+			{
+				cout<<" ";
+			}
+			
+		}
+		cout<<endl;
+	}	
+	
+	if (seatCount ==0)
+	{
+		cout<<"Sorry, the bus is empty,Please Select Correct bus"<<endl;
+	}
+	else
+	{
+	
+	cout <<"How many seats you had reserved?: "<<endl;
+	cin>> sBook;
+	rFare= sBook*fare;
+	while( sBook !=0)
+	{
+		
+	
+		cout<<"Please Enter The Row Number & Column Number: "<<endl;
+		cout<<"Please Enter The Row Number(0 to 7): "<<endl;
+		cin>> row;
+		
+		cout<<"Please Enter The Column Number (0 to 3): "<<endl;
+		cin>> col;
+		
+		if ((row >=0 && row <=7) && (col>=0 && col<=3))
+		{
+			if (seat[row][col]==1)
+			{
+		
+				seat[row][col]=0;
+				sBook--;
+				seatCount--;
+			}
+			else
+			{
+				cout<<"This Seat is already Empty: ";
+			}
+		}
+		else
+		{
+			
+			cout<<"Invalid"<<endl;
+		}
+	
+	}
+	cout <<"Amount Refunded: "<<rFare<<endl;		
+}
+}
+};
+
+void welcomeScreen ()
+{
+	
+	cout <<"\t\t\t\t\t-------------------------------------------------"<<endl;
+	cout<<"\t\t\t\t\t         Welcome To Optimist Travels              "<<endl;
+	cout <<"\t\t\t\t\t-------------------------------------------------"<<endl;
+	
+	sleep(1.5);
+	
+	cout<<"Please Wait While We Connect You To Our Server"<<endl;
+	
+}
+void mainMenu()
+{
+	cout<<"\t\t\t\t Thank You For Your Patience"<<endl;
+	cout <<"\t\t\t\t ------------------------------"<<endl;
+	cout <<"\t\t\t\t 1. ADMIN "<<endl;
+	cout <<"\t\t\t\t 2. USER "<<endl;
+	cout <<"\t\t\t\t 3. EXIT "<<endl;
+	cout <<"\t\t\t\t ------------------------------"<<endl;
+	
+	
+	
+}
+
+void desiredOption()
+{
+	BusM BusNum[5];
+	string userName;
+	int password,n;
+	int option,select;
+	bool check=true;
+	while (check)
+	{
+		mainMenu();
+		cout<<"Please Select Your Desired Option: "<<endl;
+		cin >> option;
+		
+		switch (option)
+	
+		{
+		
+			case 1:
+		
+				
+				cout<<"Enter the Username: ";
+				cin>> userName;
+				
+				cout<<"Enter the Password: ";
+				cin >> password;
+				
+				system("cls");
+				
+				while (userName!="admin" || password!= 1234)
+				{
+		
+					cout<<"Sorry Invalid Password or Username"<<endl;
+					
+					cout<<"Enter the Username: ";
+					cin>> userName;
+		
+					cout<<"Enter the Password: ";
+					cin >> password;
+					
+					system("cls");
+				}
+				
+					cout<<"Loading.........."<<endl;
+					sleep(1);
+					system("cls");
+					while (true)
+					{
+						cout<<"\t\t\t\t ***********"<<endl;
+						cout<<"\t\t\t\t ADMIN MENU "<<endl;
+						cout<<"\t\t\t\t ************"<<endl<<endl<<endl;
+						cout<<"\t\t\t\t 1.Bus Add"<<endl;
+						cout<<"\t\t\t\t ------------------"<<endl;
+						cout<<"\t\t\t\t 2.View Buses"<<endl;
+						cout<<"\t\t\t\t ------------------"<<endl;
+						cout<<"\t\t\t\t 3.Quit "<<endl;
+						cout<<"\t\t\t\t ------------------"<<endl;
+						cout<<"\t\t\t\t please select an option" <<endl;
+						cout <<" Please Select any Option: "<<endl;
+						cin >> select;		
+						if (select == 1)
+						{
+							if (busn==5)
+							{
+								cout<<"Max Limit Reached" <<endl;
+							}
+							else
+							{
+							
+								BusNum[busn].busadd();
+								busn++;
+								system("cls");	
+							}	
+						}
+						else if (select ==2)
+						{
+							for (int i=0 ;i<busn;i++)
+							{
+								cout<<"Bus Detail For Bus Number: "<<i+1<<endl;
+								BusNum[i].busView();
+							}
+						}
+						else if(select==3)
+						{
+							system("cls");
+							break;
+							
+						}
+						else
+						{
+							cout<<"Invalid"<<endl;
+						}
+					}
+					break;
+		
+	
+			
+		case 2:
+			while(true)
+			{
+				if (busn==0)
+				{
+					cout<<"No Bus Added"<<endl;
+					sleep(2);
+					system("cls");
+					break;
+				}
+				else
+				{
+				
+					system("cls");
+					cout<<"\t\t\t\t**********"<<endl;
+					cout<<"\t\t\t\t User Menu"<<endl;
+					cout<<"\t\t\t\t**********"<<endl;
+					cout<<endl<<endl;
+					cout<<"\t\t\t\t1. Book Ticket"<<endl;
+					cout<<"\t\t\t\t2. Bus Schedule"<<endl;
+					cout<<"\t\t\t\t3. Cancel Ticket"<<endl;
+					cout<<"\t\t\t\t4. Exit"<<endl;
+					
+				
+					cout <<" Please Select any Option: "<<endl;
+						cin >> select;		
+						if (select == 1)
+						{
+							for (int i=0 ;i<busn;i++)
+							{
+								cout<<"Bus Detail For Bus Number: "<<i+1<<endl;
+								BusNum[i].busView2();
+							}
+							cout<<"Enter the Bus Number from 1 to "<< busn<<": ";
+							cin>>n;
+							n=n-1;
+							BusNum[n].bookTicket();
+						}
+						else if (select ==2)
+						{
+							for (int i=0 ;i<busn;i++)
+							{
+								cout<<"Bus Detail For Bus Number: "<<i+1<<endl;
+								BusNum[i].busSchedule();
+							}
+						}
+						else if(select==3)
+						{
+							
+							for (int i=0 ;i<busn;i++)
+							{
+								cout<<"Bus Detail For Bus Number: "<<i+1<<endl;
+								BusNum[i].busView2();
+							}
+							cout<<"In Which the Ticket Has Been Booked: "<<endl;
+							cout<<"Enter the Bus Number from 1 to "<< busn<<": ";
+							cin>>n;
+							n=n-1;
+							BusNum[n].cancelTicket();				
+						}
+						else if(select==4)
+						{
+							system("cls");
+							break;
+						}
+						else
+						{
+							cout<<"Invalid"<<endl;
+						}
+				}
+			}
+				break;
+		
+		case 3:
+				
+				cout<<"\nThank You! We Will Love To See You Again.";
+				sleep(2);
+				system("cls");
+				check=false;	
+				break;		
+				
+		default:
+			
+				cout<<"Invalid"<<endl;
+				
+				
+		}
+	}
+}
+
+
+
+
+int main()
+{
+	welcomeScreen();  // welcome Screen function
+	sleep(3);         // A delay of 3 seconds
+	 				
+
+	desiredOption(); // Admin Panel and User Panel Function
+	
+
+	
+	
+		
+	
+	return 0 ;
+}
