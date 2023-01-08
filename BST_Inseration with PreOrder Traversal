@@ -1,0 +1,83 @@
+#include <iostream>
+
+
+using namespace std;
+
+/* Binary Search Tree Insertion */
+
+class Node{
+	public:
+		int data;
+		Node* left;
+		Node* right;
+		
+	
+	Node(int d) /* Constructor*/
+	{
+		this-> data= d;
+		this->left=NULL;
+		this->right=NULL;
+	}
+}; 
+
+Node* insertIntoBst(Node* root,int data) /* insert Function of BST*/
+{
+	/* base case*/
+	if (root== NULL)
+	{
+		root= new Node(data);
+		return root;
+	}
+	if (data > root-> data)
+	{
+		root->right =insertIntoBst (root->right,data);
+	}
+	else if (data < root-> data)
+	{
+		root->left =insertIntoBst (root->left,data);
+	}
+	
+}
+
+
+void takeinput(Node* &root)
+{
+	int data;
+	cin >>data;
+	
+	while (data!=-1) /* until I enter the -1, the input function will keep on taking values from the user*/
+	{
+		root = insertIntoBst(root,data); /*insertIntoBst function to insert the data */
+		cin >>data;
+		
+	}
+}
+
+void preorder(Node* &root) /* pre order traversal function*/
+{
+	Node* temp;
+	temp=root;
+	if(temp!=NULL)
+	{
+            cout<<" "<<temp->data;
+            preorder(temp->left);
+            preorder(temp->right);
+	}
+}
+
+int main()
+{
+	Node* root=NULL; /* creating a root node */
+	cout <<"Enter the Data For Binary Search Tree"<<endl;
+	takeinput(root); /* input function to add the values to create a BST*/
+	cout <<endl;
+	cout <<"Pre order Traversal: ";
+	preorder (root);
+	
+	
+	
+	
+	
+	
+	return 0;
+}
