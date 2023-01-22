@@ -1,0 +1,62 @@
+#include <iostream>
+
+
+using namespace std;
+
+void selectionSort (int arr[],int n)
+{
+	for (int i=0 ;i <n-1;i++)
+	// for loop used to iterate from round 1 to n-1//
+	{
+		int minIndex=i;
+		// assuming that the index at which i is present is the minimum.
+		for (int j=i+1 ; j<n;j++)
+		// starting the count with i+1 to check the smallest index in the remaining array 
+		{
+			if (arr[j]< arr[minIndex])
+				minIndex=j;
+			
+		}
+		swap (arr[minIndex],arr[i]);
+	}
+	
+
+}
+
+
+void printArray(int arr[], int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+}
+
+
+int main ()
+{
+	int size, arr[size];
+	
+	cout <<"Enter the size of the array: ";
+	cin >> size;
+	
+	cout <<"Enter the values in the array: "<<endl;
+	
+	for(int i=0;i<size;i++)
+	{
+		cout<< "Value at position: "<<i <<" ";
+		cin >> arr[i];
+		
+	}
+	
+	cout<<"The array before Selection sort: ";
+	for(int i=0;i<size;i++)
+	{
+		cout << arr[i]<<" ";
+		
+	}
+	
+	selectionSort (arr,size);
+	cout<<"After Selection sort: ";
+	printArray(arr,size);
+}
